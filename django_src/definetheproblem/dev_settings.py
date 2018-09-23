@@ -16,7 +16,11 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 SITE_ID = 1
 
+# EMAIL_HOST = 'smtp.gmail.com'
+
 # Application definition
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
