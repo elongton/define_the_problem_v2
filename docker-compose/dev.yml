@@ -1,38 +1,38 @@
 version: '3.2'
 services:
 
-  # angular:
-  #   build:
-  #     context: ../angular_src
-  #     dockerfile: Angular_Dockerfile_Dev
-  #   image: elongton/angular:dev
-  #   networks:
-  #     - frontend
-  #   deploy:
-  #     replicas: 2
-  #     update_config:
-  #       parallelism: 2
-  #       delay: 10s
-  #     restart_policy:
-  #       condition: on-failure
-  #   volumes:
-  #     - type: bind
-  #       source: ../angular_src
-  #       target: /usr/src/app
-  #     - '/usr/src/app/node_modules'
-  #   command: bash -c "ng serve --port 4200 --host 0.0.0.0 --poll 500"
-  #   ports:
-  #     - "80:4200"
-  #     - '49153:49153'
+  angular:
+    build:
+      context: ../angular_src
+      dockerfile: Angular_Dockerfile_Dev
+    image: elongton/angular:dev
+    networks:
+      - frontend
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - type: bind
+        source: ../angular_src
+        target: /usr/src/app
+      - '/usr/src/app/node_modules'
+    command: bash -c "ng serve --port 4200 --host 0.0.0.0 --poll 500"
+    ports:
+      - "80:4200"
+      - '49153:49153'
 
 
   db:
     image: postgres:latest
-    # networks:
-    #   - backend
-    # deploy:
-    #   placement:
-    #     constraints: [node.role == manager]
+    networks:
+      - backend
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 
 
   django:
@@ -40,14 +40,14 @@ services:
       context: ../django_src
       dockerfile: Django_Dockerfile
     image: elongton/django
-    # networks:
-    #   - frontend
-    #   - backend
-    # deploy:
-    #   replicas: 2
-    #   update_config:
-    #     parallelism: 2
-    #     delay: 10s
+    networks:
+      - frontend
+      - backend
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        delay: 10s
     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000 --settings=definetheproblem.dev_settings"
     depends_on:
       - db
@@ -63,12 +63,8 @@ services:
       - "587:587"
       - "993:993"
 
-
-
-
-
-# networks:
-#   frontend:
-#     driver: overlay
-#   backend:
-#     driver: overlay
+networks:
+  frontend:
+    driver: overlay
+  backend:
+    driver: overlay
