@@ -1,6 +1,45 @@
 <h4>Signup Form</h4>
 
-<form style="font-size: .8em;" (ngSubmit)='onSubmit(f)' #f='ngForm'>
+
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+  <input
+    type="text"
+    id="username"
+    formControlName="username"
+    placeholder="Username"
+    class="form-control">
+    <br>
+  <input
+    type="email"
+    id="email"
+    formControlName="email"
+    placeholder="Email"
+    class="form-control">
+    <br>
+  <input
+    type="password"
+    id="password"
+    formControlName="password"
+    placeholder="Password"
+    class="form-control">
+    <br>
+  <input
+    type="password"
+    id="password_again"
+    formControlName="password_again"
+    placeholder="Password (again)"
+    class="form-control">
+
+
+
+    <br>
+    <button type="submit" color="primary">Submit</button>
+
+</form>
+
+
+<!-- <form style="font-size: .8em;" (ngSubmit)='onSubmit(f)' #f='ngForm'>
 
   <input
       type="text"
@@ -29,4 +68,7 @@
       ngModel
       name="password">
 
-</form>
+  <br>
+  <button type="submit" color="primary">Submit</button>
+
+</form> -->

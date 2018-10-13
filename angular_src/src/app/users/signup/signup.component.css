@@ -1,1 +1,2 @@
-input{margin-bottom: 10px; font-size: 17px; border-radius: 5px;}
+input{width: 350px; max-width: 90%;}
+input, button{margin-bottom: 10px; font-size: 17px; border-radius: 5px; padding: 5px;}
