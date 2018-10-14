@@ -4,14 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { UsersComponent } from './users/users.component';
+import { UserComponent } from './user/user.component';
 import { AppRoutingModule } from './modules/app-routing.module';
-import { SignupComponent } from './users/signup/signup.component';
+import { SignupComponent } from './user/signup/signup.component';
+
+
+import { reducers } from './store/app.reducer';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent,
+    UserComponent,
     SignupComponent
   ],
   imports: [
@@ -19,6 +25,8 @@ import { SignupComponent } from './users/signup/signup.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent]

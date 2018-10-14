@@ -16,10 +16,10 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = new FormGroup({
-      'username': new FormControl(null),
-      'email': new FormControl(null),
-      'password': new FormControl(null),
-      'password_again': new FormControl(null),
+      'username': new FormControl('elongton', Validators.required),
+      'email': new FormControl('enrique.longton@gmail.com', [Validators.required, Validators.email]),
+      'password': new FormControl('puttie', Validators.required),
+      'password_again': new FormControl('puttie', Validators.required),
 
     })
   }
@@ -37,6 +37,3 @@ export class SignupComponent implements OnInit {
 
 
   }//signupcomponent
-
-
-}
