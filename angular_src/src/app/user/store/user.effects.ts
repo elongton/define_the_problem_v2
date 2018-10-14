@@ -21,20 +21,20 @@ const httpOptions = {
 
 @Injectable()
 export class UserEffects {
-  private djangoCreateUserURL = 'localhost/blarg';
+  private djangoCreateUserURL = 'localhost:8000/testapp/create';
 
   @Effect()
   addUser = this.actions$
     .ofType(UserActions.TRY_CREATE_USER)
-    .map((action: UserActions.TryCreateUser) => {
-      return action.payload;
-    })
-    .switchMap((user: NewUser) => {
-      return this.http.post<NewUser>(this.djangoCreateUserURL, user, httpOptions)
-    })
-    .mergeMap(response => {
-      return []
-    });
+    // .map((action: UserActions.TryCreateUser) => {
+    //   return action.payload;
+    // })
+    // .switchMap((user: NewUser) => {
+    //   return this.http.post<NewUser>(this.djangoCreateUserURL, user, httpOptions)
+    // })
+    // .mergeMap(response => {
+    //   return []
+    // });
 
 
   constructor(private actions$: Actions, private http: HttpClient, private store: Store<fromRoot.AppState>){}

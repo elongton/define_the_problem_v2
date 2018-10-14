@@ -16,14 +16,11 @@ export function userReducer(state = initialState, action: UserActions) {
     case TRY_CREATE_USER:
       return {
         ...state,
-        programs: action.payload
+        new_user: action.payload
       };
     default: {
       return state;
     }
   }
 }
-
-
 export const getUserState = (state: UserState) => state;
-//test test
