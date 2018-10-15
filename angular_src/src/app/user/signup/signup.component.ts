@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NewUser } from '../new_user.model';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../store/app.reducer'
+import * as US from '../store/user.actions';
 
 @Component({
   selector: 'app-signup',
@@ -11,8 +14,9 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup
   user_submit: NewUser
+  user: NewUser
 
-  constructor() { }
+  constructor(private store: Store<fromRoot.AppState>) { }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -22,6 +26,16 @@ export class SignupComponent implements OnInit {
       'password_again': new FormControl('puttie', Validators.required),
 
     })
+
+    //subscribe to newuser state
+    this.store.select(fromRoot.newUserState)
+      .subscribe(
+        (result) => {
+          this.user = result;
+        }
+      )
+
+
   }
 
   onSubmit(){
@@ -33,6 +47,8 @@ export class SignupComponent implements OnInit {
     )
 
     console.log(this.user_submit)
+    this.store.dispatch(new US.TryCreateUser(this.user_submit))
+    console.log('finished')
   }//onSubmit
 
 

@@ -14,4 +14,4 @@ export const getUserState = createFeatureSelector<fromUser.UserState>('user');
 //created selectors
 
 //program stuff
-// export const progListState = createSelector(getProgState, fromProg.getProgListState)
+export const newUserState = createSelector(getUserState, fromUser.getUserState)

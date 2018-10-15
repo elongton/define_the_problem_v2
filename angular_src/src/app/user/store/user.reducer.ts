@@ -23,4 +23,4 @@ export function userReducer(state = initialState, action: UserActions) {
     }
   }
 }
-export const getUserState = (state: UserState) => state;
+export const getUserState = (state: UserState) => state.new_user;
