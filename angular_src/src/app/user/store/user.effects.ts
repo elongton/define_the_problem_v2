@@ -15,18 +15,20 @@ import 'rxjs/add/operator/mergeMap';
 //
 //
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Access-Control-Allow-Origin': 'true',
+  })
 };
+
+
 
 @Injectable()
 export class UserEffects {
-  private djangoCreateUserURL = 'localhost:8000/testapp/create';
+  private djangoCreateUserURL = 'http://localhost:8000/testapp/create/';
   @Effect()
   addUser = this.actions$
     .ofType(UserActions.TRY_CREATE_USER)
-    // .do(action => {
-    //   console.log('blarg');
-    // });
     .map((action: UserActions.TryCreateUser) => {
       console.log('got to the map')
       return action.payload;
