@@ -31,11 +31,10 @@ services:
     networks:
       - backend
     volumes:
-      - ../postgres-data:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     deploy:
       placement:
         constraints: [node.role == manager]
-
 
   django:
     build:
@@ -64,6 +63,10 @@ services:
       - "465:465"
       - "587:587"
       - "993:993"
+
+volumes:
+   pgdata:
+
 
 networks:
   frontend:
