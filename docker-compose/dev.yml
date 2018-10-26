@@ -30,6 +30,12 @@ services:
     image: postgres:latest
     networks:
       - backend
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - ../postgres-data:/var/lib/postgresql/data
     deploy:
       placement:
         constraints: [node.role == manager]
